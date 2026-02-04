@@ -1,0 +1,9 @@
+@import '../../shared-forms.css';
+
+.registration-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}

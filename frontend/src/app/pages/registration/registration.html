@@ -1,0 +1,192 @@
+<div class="registration-wrapper">
+    <!-- Progress Header (Visual only for now) -->
+    <div class="form-stepper">
+        <div class="step active">
+            <span class="num">1</span>
+            <span class="label">Patient Info</span>
+        </div>
+        <div class="divider"></div>
+        <div class="step">
+            <span class="num">2</span>
+            <span class="label">Guardians</span>
+        </div>
+        <div class="divider"></div>
+        <div class="step">
+            <span class="num">3</span>
+            <span class="label">Insurance</span>
+        </div>
+        <div class="divider"></div>
+        <div class="step">
+            <span class="num">4</span>
+            <span class="label">Billing</span>
+        </div>
+    </div>
+
+    <!-- Form Content -->
+    <div class="modern-form-container">
+        <!-- Section 1: Basic Info -->
+        <div class="form-section">
+            <div class="section-header">
+                <i class="ph-bold ph-user-circle"></i>
+                <div>
+                    <h3>Personal Details</h3>
+                    <p>Standard registration information for new admissions</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="input-field">
+                    <label>Registration Date</label>
+                    <div class="i-group">
+                        <i class="ph ph-calendar"></i>
+                        <input type="date" value="2026-02-04">
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Reg Expiry Date</label>
+                    <div class="i-group">
+                        <i class="ph ph-calendar-x"></i>
+                        <input type="date" value="2027-02-04">
+                    </div>
+                </div>
+
+                <div class="input-field span-2">
+                    <label>Full Patient Name</label>
+                    <div class="name-split">
+                        <select class="title-sel">
+                            <option>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Ms.</option>
+                            <option>Dr.</option>
+                        </select>
+                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="Middle Name">
+                        <input type="text" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Date of Birth</label>
+                    <div class="i-group">
+                        <i class="ph ph-cake"></i>
+                        <input type="text" placeholder="DD/MM/YYYY">
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Age (Y/M/D)</label>
+                    <div class="triple-input">
+                        <input type="number" placeholder="YY">
+                        <input type="number" placeholder="MM">
+                        <input type="number" placeholder="DD">
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Gender</label>
+                    <div class="gender-toggle">
+                        <label class="g-opt">
+                            <input type="radio" name="g" checked>
+                            <span>Male</span>
+                        </label>
+                        <label class="g-opt">
+                            <input type="radio" name="g">
+                            <span>Female</span>
+                        </label>
+                        <label class="g-opt">
+                            <input type="radio" name="g">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Blood Group</label>
+                    <select class="modern-select">
+                        <option>Select</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Contact Info -->
+        <div class="form-section">
+            <div class="section-header">
+                <i class="ph-bold ph-phone"></i>
+                <div>
+                    <h3>Contact Information</h3>
+                    <p>Primary contact details for emergency and results</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="input-field">
+                    <label>Mobile Number</label>
+                    <div class="i-group">
+                        <i class="ph ph-phone"></i>
+                        <input type="tel" placeholder="+91 00000-00000">
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label>Email Address</label>
+                    <div class="i-group">
+                        <i class="ph ph-envelope"></i>
+                        <input type="email" placeholder="patient@example.com">
+                    </div>
+                </div>
+
+                <div class="input-field span-2">
+                    <label>Residential Address</label>
+                    <div class="i-group text-area">
+                        <i class="ph ph-map-pin"></i>
+                        <textarea placeholder="Enter full permanent and local address details..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Professional/Billing Info -->
+        <div class="form-section">
+            <div class="section-header">
+                <i class="ph-bold ph-wallet"></i>
+                <div>
+                    <h3>Registration & Billing</h3>
+                    <p>Financial details and membership/category selection</p>
+                </div>
+            </div>
+
+            <div class="billing-summary">
+                <div class="b-item">
+                    <label>Registration Fee</label>
+                    <input type="text" value="₹ 500" readonly>
+                </div>
+                <div class="b-item">
+                    <label>Discount (%)</label>
+                    <input type="number" value="0">
+                </div>
+                <div class="b-item total">
+                    <label>Net Amount</label>
+                    <input type="text" value="₹ 500" class="highlight" readonly>
+                </div>
+                <div class="b-item status">
+                    <label>Payment Mode</label>
+                    <div class="p-modes">
+                        <button class="mode-btn active">Cash</button>
+                        <button class="mode-btn">Card</button>
+                        <button class="mode-btn">UPI</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+/* HealthB4U Hospital Management System - Modern Professional Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Modern Color Palette - Medical Professional */
+    --primary: #0F67B1;
+    /* Deep Medical Blue */
+    --primary-light: #3FA2F6;
+    /* Bright Blue */
+    --primary-dark: #0A4A7D;
+    /* Dark Blue */
+    --secondary: #96C9F4;
+    /* Soft Blue Accent */
+    --accent: #00D9FF;
+    /* Cyan Highlight */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #0F67B1 0%, #3FA2F6 100%);
+    --gradient-secondary: linear-gradient(135deg, #3FA2F6 0%, #96C9F4 100%);
+    --gradient-accent: linear-gradient(135deg, #00D9FF 0%, #0F67B1 100%);
+    --gradient-dark: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+
+    /* Neutrals */
+    --bg-primary: #F8FAFC;
+    /* Very Light Blue-Gray */
+    --bg-secondary: #FFFFFF;
+    /* Pure White */
+    --bg-dark: #1E293B;
+    /* Dark Slate */
+    --text-primary: #1E293B;
+    /* Dark Slate */
+    --text-secondary: #64748B;
+    /* Medium Gray */
+    --text-light: #94A3B8;
+    /* Light Gray */
+    --text-white: #FFFFFF;
+
+    /* Status Colors */
+    --success: #10B981;
+    /* Green */
+    --warning: #F59E0B;
+    /* Amber */
+    --danger: #EF4444;
+    /* Red */
+    --info: #3B82F6;
+    /* Blue */
+
+    /* UI Elements */
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
+    --border-radius-lg: 24px;
+    --shadow-sm: 0 2px 8px rgba(15, 103, 177, 0.08);
+    --shadow-md: 0 4px 16px rgba(15, 103, 177, 0.12);
+    --shadow-lg: 0 8px 32px rgba(15, 103, 177, 0.16);
+    --shadow-xl: 0 16px 48px rgba(15, 103, 177, 0.24);
+
+    /* Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-light), var(--primary));
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    background-clip: padding-box;
+}
+
+/* Smooth Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}

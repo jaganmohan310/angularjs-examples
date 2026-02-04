@@ -1,0 +1,147 @@
+<div class="dashboard-wrapper">
+    <!-- Stats Grid -->
+    <div class="glance-grid">
+        <div class="glance-card">
+            <div class="card-icon blue">
+                <i class="ph-fill ph-users"></i>
+            </div>
+            <div class="card-data">
+                <span class="label">Total In-Patients</span>
+                <h3 class="value">1,248</h3>
+                <span class="trend up"><i class="ph ph-trend-up"></i> +12% this month</span>
+            </div>
+        </div>
+
+        <div class="glance-card">
+            <div class="card-icon green">
+                <i class="ph-fill ph-bed"></i>
+            </div>
+            <div class="card-data">
+                <span class="label">Available Beds</span>
+                <h3 class="value">42</h3>
+                <span class="trend"><i class="ph ph-check-circle"></i> Capacity: 85%</span>
+            </div>
+        </div>
+
+        <div class="glance-card">
+            <div class="card-icon orange">
+                <i class="ph-fill ph-calendar-plus"></i>
+            </div>
+            <div class="card-data">
+                <span class="label">Today Admissions</span>
+                <h3 class="value">12</h3>
+                <span class="trend up"><i class="ph ph-trend-up"></i> +4 from yesterday</span>
+            </div>
+        </div>
+
+        <div class="glance-card">
+            <div class="card-icon purple">
+                <i class="ph-fill ph-currency-circle-dollar"></i>
+            </div>
+            <div class="card-data">
+                <span class="label">Daily Revenue</span>
+                <h3 class="value">₹1.2L</h3>
+                <span class="trend up"><i class="ph ph-trend-up"></i> +8%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="dashboard-main">
+        <!-- Recent Admissions Card -->
+        <div class="content-card">
+            <div class="card-header">
+                <div class="h-text">
+                    <h3>Recent Admissions</h3>
+                    <p>Real-time view of new patients registered today</p>
+                </div>
+                <button class="view-all">View All Patients</button>
+            </div>
+
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Reg No.</th>
+                                <th>Doctor</th>
+                                <th>Ward / Bed</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of patients">
+                                <td class="patient-cell">
+                                    <img [src]="'https://api.dicebear.com/7.x/initials/svg?seed=' + p.name"
+                                        alt="Avatar">
+                                    <span>{{p.name}}</span>
+                                </td>
+                                <td><span class="badge secondary">{{p.id}}</span></td>
+                                <td>
+                                    <div class="doctor-pill">
+                                        <i class="ph ph-stethoscope"></i>
+                                        <span>{{p.doctor}}</span>
+                                    </div>
+                                </td>
+                                <td>{{p.ward}}</td>
+                                <td>
+                                    <span class="status-chip" [class.success]="p.id !== 'PID-8825'"
+                                        [class.warning]="p.id === 'PID-8825'">
+                                        {{p.id === 'PID-8825' ? 'Critical' : 'Stable'}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-dots">
+                                        <button class="icon-btn"><i class="ph ph-eye"></i></button>
+                                        <button class="icon-btn"><i class="ph ph-dots-three-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Stats Card -->
+        <div class="side-panel">
+            <!-- Capacity Card -->
+            <div class="content-card mini">
+                <h3>Occupancy Rate</h3>
+                <div class="circular-progress">
+                    <div class="progress-info">
+                        <span class="percent">85%</span>
+                        <span class="label">Full</span>
+                    </div>
+                </div>
+                <div class="stat-list">
+                    <div class="s-row">
+                        <span>General Ward</span>
+                        <strong>92%</strong>
+                    </div>
+                    <div class="s-row">
+                        <span>ICU</span>
+                        <strong>75%</strong>
+                    </div>
+                    <div class="s-row">
+                        <span>Critical Care</span>
+                        <strong>60%</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="content-card mini">
+                <h3>Quick Actions</h3>
+                <div class="quick-grid">
+                    <button class="q-link"><i class="ph ph-file-plus"></i> New Bill</button>
+                    <button class="q-link"><i class="ph ph-calendar-check"></i> Book OT</button>
+                    <button class="q-link"><i class="ph ph-shield-check"></i> Insurance</button>
+                    <button class="q-link"><i class="ph ph-file-pdf"></i> Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

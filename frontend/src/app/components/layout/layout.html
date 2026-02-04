@@ -1,0 +1,127 @@
+<div class="app-container">
+    <!-- Sidebar -->
+    <aside class="modern-sidebar">
+        <div class="sidebar-brand">
+            <div class="logo-box">
+                <i class="ph-fill ph-heartbeat"></i>
+            </div>
+            <div class="brand-text">
+                <span class="main">HealthB4U</span>
+                <span class="sub">Medical Suite</span>
+            </div>
+        </div>
+
+        <div class="sidebar-scroll">
+            <div class="nav-section">
+                <p class="section-title">MAIN MODULES</p>
+                <div class="module-selector">
+                    <button *ngFor="let mod of modules" class="module-btn" [class.active]="activeModule === mod.id"
+                        (click)="setModule(mod.id)">
+                        <i [class]="'ph-fill ' + mod.icon"></i>
+                        <span>{{mod.label}}</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <p class="section-title">IN-PATIENT SERVICES</p>
+                <nav class="side-nav">
+                    <a class="nav-link" [class.active]="activeScreen === 'dashboard'" (click)="setScreen('dashboard')">
+                        <i class="ph-bold ph-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="nav-link" [class.active]="activeScreen === 'admission'" (click)="setScreen('admission')">
+                        <i class="ph-bold ph-user-plus"></i>
+                        <span>Registration</span>
+                    </a>
+                    <a class="nav-link" [class.active]="activeScreen === 'cancellation'"
+                        (click)="setScreen('cancellation')">
+                        <i class="ph-bold ph-prohibit"></i>
+                        <span>Cancellation</span>
+                    </a>
+                    <a class="nav-link" [class.active]="activeScreen === 'patients'" (click)="setScreen('patients')">
+                        <i class="ph-bold ph-users"></i>
+                        <span>Patient List</span>
+                    </a>
+                    <a class="nav-link" [class.active]="activeScreen === 'procedure'" (click)="setScreen('procedure')">
+                        <i class="ph-bold ph-first-aid-kit"></i>
+                        <span>Procedures</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <p class="section-title">SYSTEM</p>
+                <nav class="side-nav">
+                    <a class="nav-link"><i class="ph-bold ph-gear"></i><span>Settings</span></a>
+                    <a class="nav-link"><i class="ph-bold ph-question"></i><span>Support</span></a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-pill" (click)="logout()">
+                <img [src]="'https://api.dicebear.com/7.x/avataaars/svg?seed=' + username" alt="Avatar">
+                <div class="user-info">
+                    <span class="u-name">{{username}}</span>
+                    <span class="u-role">Administrator</span>
+                </div>
+                <i class="ph ph-sign-out logout-icon"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Body -->
+    <main class="main-layout">
+        <header class="top-utility">
+            <div class="page-info">
+                <h2 class="current-screen-title">{{workspaceTitle}}</h2>
+                <p class="breadcrumb">In-Patient / {{workspaceTitle}}</p>
+            </div>
+
+            <div class="util-actions">
+                <!-- Search -->
+                <div class="search-bar">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" placeholder="Search patients, bills...">
+                </div>
+
+                <!-- Stats -->
+                <div class="live-info">
+                    <div class="time-box">
+                        <i class="ph ph-clock"></i>
+                        <span>{{currentTime}}</span>
+                    </div>
+                    <div class="date-box">
+                        <i class="ph ph-calendar"></i>
+                        <span>{{currentDate}}</span>
+                    </div>
+                </div>
+
+                <div class="notif-badge">
+                    <i class="ph ph-bell"></i>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="workspace-area">
+            <!-- Workspace Toolbar -->
+            <div class="workspace-controls">
+                <div class="control-group">
+                    <button class="control-btn primary"><i class="ph ph-floppy-disk"></i> Save Data</button>
+                    <button class="control-btn"><i class="ph ph-pencil"></i> Edit</button>
+                    <button class="control-btn"><i class="ph ph-printer"></i> Print</button>
+                </div>
+                <div class="control-group">
+                    <button class="control-btn danger"><i class="ph ph-x-circle"></i> Cancel Task</button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="dynamic-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </main>
+</div>
