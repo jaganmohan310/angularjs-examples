@@ -1,0 +1,258 @@
+.ip-container {
+    display: flex;
+    height: calc(100vh - 100px);
+    /* Adjust based on header/footer */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(51, 181, 229, 0.1);
+    border-top: 4px solid #33b5e5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ip-sidebar {
+    width: 220px;
+    background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.ip-header-title {
+    background-color: #5b9bd5;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #fff;
+}
+
+.ip-menu {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.menu-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 13px;
+    background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 100%);
+    transition: background 0.2s;
+    text-align: center;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    background: #e6f7ff;
+}
+
+.menu-item.active {
+    background: linear-gradient(to bottom, #e6f7ff 0%, #cceeff 100%);
+    border-left: 4px solid #007bff;
+    font-weight: bold;
+}
+
+.ip-content {
+    flex: 1;
+    padding: 5px;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+/* Form Card Styles */
+.form-card {
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-header {
+    background: linear-gradient(to bottom, #5b9bd5, #4a8ac0);
+    color: white;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-body {
+    padding: 15px;
+    font-size: 13px;
+    overflow-y: auto;
+}
+
+/* Grid Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px 1fr;
+    gap: 8px 15px;
+    align-items: center;
+}
+
+.label-col {
+    text-align: left;
+    font-weight: bold;
+    color: #444;
+}
+
+.input-col {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+}
+
+/* Section Titles */
+.section-title {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #5b9bd5;
+    padding-bottom: 3px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Autocomplete */
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    /* Match input width generally */
+    border: 1px solid #ccc;
+    background: white;
+    z-index: 1000;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f8ff;
+}
+
+/* Table Styles */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.data-table th {
+    background: #e0e0e0;
+    /* Light grey header matches screenshot */
+    border: 1px solid #bbb;
+    padding: 6px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+}
+
+.data-table td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    color: #333;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #eef7ff;
+}
+
+/* Helper Classes */
+.required {
+    color: red;
+}
+
+.full-row {
+    grid-column: 1 / -1;
+}
+
+.btn-tool {
+    padding: 3px 10px;
+    border: 1px solid #999;
+    background: linear-gradient(#f0f0f0, #d0d0d0);
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

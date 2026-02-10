@@ -1,0 +1,282 @@
+<div class="lab-container">
+    <!-- Lab Sub-Navigation -->
+    <nav class="sub-nav-bar">
+        <button (click)="setView('dashboard')" [class.active]="currentView === 'dashboard'">
+            <i class="ph ph-grid-four"></i> Dashboard
+        </button>
+        <button (click)="setView('requests')" [class.active]="currentView === 'requests'">
+            <i class="ph ph-clipboard-text"></i> Test Requests
+        </button>
+        <button (click)="setView('history')" [class.active]="currentView === 'history'">
+            <i class="ph ph-file-search"></i> Lab Reports
+        </button>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <div *ngIf="currentView === 'dashboard'" class="view-content fade-in">
+        <div class="stats-grid">
+            <div *ngFor="let stat of stats" class="stat-card" [ngClass]="stat.color">
+                <div class="stat-icon"><i [class]="stat.icon"></i></div>
+                <div class="stat-info">
+                    <span class="label">{{stat.label}}</span>
+                    <h3 class="value">{{stat.value}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="lab-main-grid">
+            <div class="content-card">
+                <header class="card-header">
+                    <h4>Recent Test Requests</h4>
+                    <button class="btn-text" (click)="setView('requests')">View All</button>
+                </header>
+                <table class="simple-table">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Test</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let r of requests.slice(0, 4)">
+                            <td>{{r.name}}</td>
+                            <td>{{r.test}}</td>
+                            <td><span class="badge" [ngClass]="r.status.toLowerCase()">{{r.status}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-card">
+                <h4>Lab Efficiency</h4>
+                <div class="efficiency-stats">
+                    <div class="eff-item">
+                        <span>Avg. Turnaround Time</span>
+                        <strong>4.2 Hrs</strong>
+                    </div>
+                    <div class="eff-item">
+                        <span>Urgent Processing</span>
+                        <strong>98%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST REQUESTS LIST -->
+    <div *ngIf="currentView === 'requests'" class="view-content fade-in">
+        <div class="toolbar">
+            <div class="search-box">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Search Patient or Order ID...">
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Patient Details</th>
+                        <th>Test Name</th>
+                        <th>Doctor</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of filteredRequests">
+                        <td><span class="order-link">{{r.id}}</span></td>
+                        <td>
+                            <div class="p-details">
+                                <strong>{{r.name}}</strong>
+                                <small>{{r.pid}}</small>
+                            </div>
+                        </td>
+                        <td>{{r.test}}</td>
+                        <td>{{r.doctor}}</td>
+                        <td>
+                            <span class="status-pill" [ngClass]="r.status.toLowerCase()">{{r.status}}</span>
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <button *ngIf="r.status === 'Requested'" class="btn-action green"
+                                    (click)="setView('collection', r)" title="Collect Sample">
+                                    <i class="ph ph-drop"></i>
+                                </button>
+                                <button *ngIf="r.status === 'Collected'" class="btn-action blue"
+                                    (click)="setView('entry', r)" title="Result Entry">
+                                    <i class="ph ph-pencil-line"></i>
+                                </button>
+                                <button *ngIf="r.status === 'Completed'" class="btn-action gray"
+                                    (click)="setView('report', r)" title="View Report">
+                                    <i class="ph ph-file-text"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SAMPLE COLLECTION -->
+    <div *ngIf="currentView === 'collection' && selectedRequest" class="view-content fade-in">
+        <div class="form-container mini">
+            <header class="form-header">
+                <button class="back-link" (click)="setView('requests')"><i class="ph ph-arrow-left"></i> Back</button>
+                <h3>Sample Collection</h3>
+            </header>
+
+            <div class="info-banner">
+                <p><strong>Order ID:</strong> {{selectedRequest.id}}</p>
+                <p><strong>Test:</strong> {{selectedRequest.test}}</p>
+            </div>
+
+            <div class="form-body">
+                <div class="input-group">
+                    <label>Sample Type</label>
+                    <select>
+                        <option>Whole Blood (EDTA)</option>
+                        <option>Serum</option>
+                        <option>Urine (Random)</option>
+                        <option>Plasma</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Collected By (Technician)</label>
+                    <input type="text" value="Rahul Sharma" readonly>
+                </div>
+                <div class="input-group">
+                    <label>Collection Date & Time</label>
+                    <input type="datetime-local" value="2024-02-05T12:00">
+                </div>
+                <button class="btn-primary full-width" (click)="collectSample()">
+                    Mark Sample as Collected
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT ENTRY -->
+    <div *ngIf="currentView === 'entry' && selectedRequest" class="view-content fade-in">
+        <div class="form-container wide">
+            <header class="form-header">
+                <button class="back-link" (click)="setView('requests')"><i class="ph ph-arrow-left"></i> Back</button>
+                <h3>Lab Result Entry: {{selectedRequest.test}}</h3>
+            </header>
+
+            <div class="entry-grid">
+                <div class="entry-row header">
+                    <span>Parameter</span>
+                    <span>Observed Value</span>
+                    <span>Unit</span>
+                    <span>Normal Range</span>
+                </div>
+                <div *ngFor="let p of testParameters" class="entry-row">
+                    <label>{{p.name}}</label>
+                    <input type="text" [value]="p.value">
+                    <span class="unit">{{p.unit}}</span>
+                    <span class="range">{{p.range}}</span>
+                </div>
+            </div>
+
+            <div class="remarks-box">
+                <label>Clinical Remarks</label>
+                <textarea placeholder="Enter any specific observations..."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-outline" (click)="setView('requests')">Cancel</button>
+                <button class="btn-primary" (click)="saveResults()">Save and Generate Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAB REPORT VIEW -->
+    <div *ngIf="currentView === 'report' && selectedRequest" class="view-content fade-in">
+        <div class="medical-report lab-report">
+            <header class="report-header">
+                <div class="hosp-brand">
+                    <h2>HEALTHB4U CLINICAL LABORATORIES</h2>
+                    <p>ISO 9001:2015 Certified Diagnostic Center</p>
+                </div>
+                <div class="report-meta">
+                    <p><strong>Report ID:</strong> {{selectedRequest.id}}</p>
+                    <p><strong>Date:</strong> {{selectedRequest.date}}</p>
+                </div>
+            </header>
+
+            <div class="p-summary-box">
+                <div class="col">
+                    <p><strong>Patient Name:</strong> {{selectedRequest.name}}</p>
+                    <p><strong>Patient ID:</strong> {{selectedRequest.pid}}</p>
+                </div>
+                <div class="col">
+                    <p><strong>Ref. Doctor:</strong> {{selectedRequest.doctor}}</p>
+                    <p><strong>Age / Sex:</strong> 32Y / Female</p>
+                </div>
+            </div>
+
+            <div class="report-content">
+                <h3 class="test-title">{{selectedRequest.test}}</h3>
+                <table class="report-data-table">
+                    <thead>
+                        <tr>
+                            <th>Investigation</th>
+                            <th>Result</th>
+                            <th>Unit</th>
+                            <th>Reference Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of testParameters">
+                            <td>{{p.name}}</td>
+                            <td><strong>{{p.value}}</strong></td>
+                            <td>{{p.unit}}</td>
+                            <td>{{p.range}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="clinical-notes">
+                    <h4>Interpretation:</h4>
+                    <p>All parameters are within normal biological limits for the specified age and gender. Please
+                        correlate with clinical findings.</p>
+                </div>
+            </div>
+
+            <footer class="report-footer">
+                <div class="sign-block">
+                    <p>____________________</p>
+                    <p><strong>Dr. S. K. Gupta</strong></p>
+                    <p>Pathologist (MD)</p>
+                </div>
+                <button class="btn-print"><i class="ph ph-printer"></i> Print / Download PDF</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- HISTORY/REPORTS -->
+    <div *ngIf="currentView === 'history'" class="view-content fade-in">
+        <div class="history-list">
+            <div class="filter-bar">
+                <select>
+                    <option>All Tests</option>
+                    <option>Hematology</option>
+                    <option>Biochemistry</option>
+                </select>
+                <input type="date">
+            </div>
+            <div *ngFor="let r of requests" class="history-item">
+                <div class="h-icon"><i class="ph ph-file-pdf"></i></div>
+                <div class="h-info">
+                    <strong>{{r.test}}</strong>
+                    <span>{{r.name}} | {{r.date}}</span>
+                </div>
+                <button class="btn-icon"><i class="ph ph-download-simple"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

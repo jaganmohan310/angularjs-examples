@@ -1,0 +1,132 @@
+<div class="reports-container">
+    <!-- Professional Loading Overlay -->
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <span>Generating Report...</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="reports-sidebar">
+        <div class="sidebar-header">
+            <span>Reports</span>
+        </div>
+        <div class="sidebar-menu">
+            <div *ngFor="let mod of modules" class="menu-item" [class.active]="currentModule === mod"
+                (click)="selectModule(mod)">
+                {{ mod }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="reports-content">
+        <div class="content-header">
+            <span>{{ currentModule }} Reports</span>
+            <div class="toolbar-actions">
+                <button class="tool-btn" (click)="getReport()">
+                    <i class="ph-fill ph-floppy-disk"></i> Save
+                </button>
+                <button class="tool-btn">
+                    <i class="ph-fill ph-pencil-simple"></i> Edit
+                </button>
+                <button class="tool-btn">
+                    <i class="ph-fill ph-printer"></i> Print
+                </button>
+                <button class="tool-btn">
+                    <i class="ph-fill ph-magnifying-glass"></i> Search
+                </button>
+                <button class="tool-btn">
+                    <i class="ph-fill ph-trash"></i> Delete
+                </button>
+                <button class="tool-btn danger" (click)="cancel()">
+                    <i class="ph-fill ph-x-circle"></i> Cancel
+                </button>
+            </div>
+        </div>
+
+        <div class="content-body">
+
+            <div class="report-selection-area">
+                <div class="report-list">
+                    <label *ngFor="let report of currentReports" class="radio-item">
+                        <input type="radio" name="report" [value]="report" [(ngModel)]="selectedReport">
+                        {{ report }}
+                    </label>
+                </div>
+
+                <div class="report-preview-placeholder" *ngIf="selectedReport">
+                    <h3 *ngIf="showProceduresPreview" style="font-weight: normal; font-size: 14px; color: black;">Shows
+                        All Procedures</h3>
+                    <h3 *ngIf="showUserCollectionPreview" style="font-weight: normal; font-size: 14px; color: black;">
+                        User Collection</h3>
+                    <h3 *ngIf="!showProceduresPreview && !showUserCollectionPreview">{{ selectedReport }}</h3>
+                </div>
+            </div>
+
+            <!-- Footer Filters -->
+            <!-- Footer Filters -->
+            <div class="filters-footer" *ngIf="selectedReport">
+                <div class="filters-row">
+                    <!-- Date Range Filter -->
+                    <div class="filter-group" *ngIf="showDateRange">
+                        <label>From Date :</label>
+                        <input type="datetime-local" class="form-control" [(ngModel)]="filter.fromDate">
+
+                        <label>To Date :</label>
+                        <input type="datetime-local" class="form-control" [(ngModel)]="filter.toDate">
+                    </div>
+
+                    <!-- MRNO Range Filter -->
+                    <div class="filter-group" *ngIf="showMrnoRange">
+                        <label>From MRNO :</label>
+                        <input type="text" class="form-control" [(ngModel)]="filter.fromMrno" style="width: 150px;">
+
+                        <label>To MRNO :</label>
+                        <input type="text" class="form-control" [(ngModel)]="filter.toMrno" style="width: 150px;">
+                    </div>
+
+                    <!-- Year Dropdowns Filter -->
+                    <div class="filter-group" *ngIf="showYearDropdowns">
+                        <label>Year1 :</label>
+                        <select class="form-control" [(ngModel)]="filter.year1" style="width: 150px;">
+                            <option *ngFor="let y of years" [value]="y">{{y}}</option>
+                        </select>
+
+                        <label>Year2 :</label>
+                        <select class="form-control" [(ngModel)]="filter.year2" style="width: 150px;">
+                            <option *ngFor="let y of years" [value]="y">{{y}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- User Collection Second Row (User & Module) -->
+                <div class="filters-row" *ngIf="showUserCollectionFilters" style="margin-top: 10px;">
+                    <div class="filter-group">
+                        <label>User Name :</label>
+                        <select class="form-control" [(ngModel)]="filter.user" style="width: 150px;">
+                            <option *ngFor="let u of users" [value]="u">{{u}}</option>
+                        </select>
+
+                        <label style="margin-left: 20px;">Module :</label>
+                        <select class="form-control" [(ngModel)]="filter.module" style="width: 150px;">
+                            <option *ngFor="let m of modulesList" [value]="m">{{m}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- No Parameters Message -->
+                <div class="no-params-msg" *ngIf="showNoParametersMessage"
+                    style="width: 100%; text-align: center; color: #555; font-weight: bold; padding: 5px;">
+                    Parameters are Not Required
+                </div>
+
+                <div class="action-buttons-container">
+                    <button class="btn-primary" (click)="getReport()">GetReport</button>
+                    <button class="btn-secondary" (click)="cancel()">Cancel</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

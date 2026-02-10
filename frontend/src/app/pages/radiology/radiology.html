@@ -1,0 +1,171 @@
+<div class="radiology-container">
+
+    <!-- Sidebar matches the style of AppManagement -->
+    <div class="rad-sidebar">
+        <div class="rad-header">
+            <span>Radiology</span>
+        </div>
+        <div class="rad-menu">
+            <div class="menu-item" [class.active]="currentView === 'charges'" (click)="setView('charges')">
+                Charges
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'diagnostic-test'"
+                (click)="setView('diagnostic-test')">
+                Diagnostic Test
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="rad-content">
+
+        <!-- View: Charges -->
+        <div class="form-card" *ngIf="currentView === 'charges'">
+            <div class="form-header">
+                <span>Charges</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+
+                    <div class="label-col">Department <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.department">
+                            <option value="">Select</option>
+                            <option *ngFor="let dep of departments" [value]="dep">{{dep}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Investigation <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.investigation">
+                            <option value="">Select</option>
+                            <option *ngFor="let inv of investigations" [value]="inv">{{inv}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Organization Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.orgType">
+                            <option *ngFor="let org of organizationTypes" [value]="org">{{org}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" [(ngModel)]="chargesForm.copyTo">
+                            <span>Copy to</span>
+                        </div>
+                    </div>
+
+                    <div class="label-col">Organization Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.targetOrgType">
+                            <option *ngFor="let org of organizationTypes" [value]="org">{{org}}</option>
+                        </select>
+                    </div>
+
+                    <!-- Footer Row -->
+                    <div class="full-row"
+                        style="grid-column: 1 / -1; margin-top: 20px; background: #f9f9f9; padding: 10px; border-top: 1px solid #eee;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 20px;">
+
+                            <div>
+                                <label style="font-size: 12px; font-weight: bold; color: #555;">Hospital Share</label>
+                                <input type="number" class="form-control" [(ngModel)]="chargesForm.hospitalShare">
+                            </div>
+
+                            <div>
+                                <label style="font-size: 12px; font-weight: bold; color: #555;">Doctor Share</label>
+                                <input type="number" class="form-control" [(ngModel)]="chargesForm.doctorShare">
+                            </div>
+
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: flex-end; align-items: flex-end; height: 100%; gap: 10px;">
+                                    <span
+                                        style="font-size: 13px; font-weight: bold; padding-bottom: 5px;">Incr./Decr.(%)</span>
+                                    <button class="btn-tool">Apply To All</button>
+                                    <input type="number" style="width: 50px; padding: 5px;"
+                                        [(ngModel)]="chargesForm.increment">
+                                    <button class="btn-tool">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Diagnostic Test -->
+        <div class="form-card" *ngIf="currentView === 'diagnostic-test'">
+            <div class="form-header">
+                <span>Diagnostic Test</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+
+                    <div class="label-col">Test Code <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="diagnosticTestForm.testCode">
+                    </div>
+
+                    <div class="label-col">Test Name <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="diagnosticTestForm.testName">
+                    </div>
+
+                    <div class="label-col">Description <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <textarea class="form-control" [(ngModel)]="diagnosticTestForm.description"></textarea>
+                    </div>
+
+                    <div class="label-col">Instruction <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <textarea class="form-control" [(ngModel)]="diagnosticTestForm.instruction"></textarea>
+                    </div>
+
+                    <div class="label-col">Department <span class="required">*</span> :</div>
+                    <div class="input-col" style="justify-content: space-between;">
+                        <select class="form-control" [(ngModel)]="diagnosticTestForm.department" style="width: 200px;">
+                            <option value="">Select</option>
+                            <option *ngFor="let dep of departments" [value]="dep">{{dep}}</option>
+                        </select>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" [(ngModel)]="diagnosticTestForm.active">
+                            <span>Active</span>
+                        </div>
+                    </div>
+
+                    <!-- Grid for Reagents (Simplistic representation) -->
+                    <div class="full-row" style="grid-column: 1 / -1; margin-top: 15px;">
+                        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc;">
+                            <thead style="background: #62a1d6; color: white;">
+                                <tr>
+                                    <th style="padding: 5px; text-align: left;">Reagent Name</th>
+                                    <th style="padding: 5px; text-align: left; width: 100px;">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 5px; border-bottom: 1px solid #ccc;">
+                                        <input type="text" class="form-control"
+                                            [(ngModel)]="diagnosticTestForm.reagent">
+                                    </td>
+                                    <td style="padding: 5px; border-bottom: 1px solid #ccc;">
+                                        <input type="text" class="form-control"
+                                            [(ngModel)]="diagnosticTestForm.quantity">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

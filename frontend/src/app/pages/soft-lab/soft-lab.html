@@ -1,0 +1,552 @@
+<div class="lab-container">
+
+    <!-- Sidebar -->
+    <div class="lab-sidebar">
+        <div class="lab-header-title">
+            <span>Lab</span>
+        </div>
+        <div class="lab-menu">
+            <div class="menu-item" [class.active]="currentView === 'charges'" (click)="setView('charges')">
+                Charges
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'due-collection'"
+                (click)="setView('due-collection')">
+                Lab Due Collection
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'registration'" (click)="setView('registration')">
+                Registration
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'report-status'" (click)="setView('report-status')">
+                Report Status
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'test-cancellation'"
+                (click)="setView('test-cancellation')">
+                Test Cancellation
+            </div>
+            <div class="menu-item" [class.active]="currentView === 'test-details'" (click)="setView('test-details')">
+                Test Details
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lab-content">
+
+        <!-- View: Test Details -->
+        <div class="form-card" *ngIf="currentView === 'test-details'">
+            <div class="form-header">
+                <span>Test Details</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+
+                    <div class="label-col">Department <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="testDetailsForm.department"
+                            (change)="onDepartmentChange()">
+                            <option value="">Select</option>
+                            <option *ngFor="let dep of labDepartments" [value]="dep">{{dep}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <div class="label-col">Test Name :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="testDetailsForm.testName">
+                            <option value="">Select</option>
+                            <option *ngFor="let test of currentTestList" [value]="test">{{test}}</option>
+                        </select>
+                    </div>
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <div class="label-col">Field Name :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="testDetailsForm.fieldName">
+                    </div>
+
+                    <div class="label-col">Unit :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="testDetailsForm.unit"
+                            placeholder="Enter Units">
+                    </div>
+
+                    <!-- Radio Buttons & Actions -->
+                    <div class="full-row"
+                        style="grid-column: 1 / -1; margin-top: 10px; display: flex; gap: 20px; align-items: center; justify-content: center; border-top: 1px solid #eee; padding-top: 10px;">
+
+                        <div class="radio-group" style="gap: 20px;">
+                            <label><input type="radio" name="testType" [(ngModel)]="testDetailsForm.type"
+                                    value="Qualitative"> Qualitative</label>
+                            <label><input type="radio" name="testType" [(ngModel)]="testDetailsForm.type"
+                                    value="Quantitative"> Quantitative</label>
+                            <label><input type="radio" name="testType" [(ngModel)]="testDetailsForm.type"
+                                    value="Sub Header"> Sub Header</label>
+                        </div>
+
+                        <button class="btn-tool" style="padding: 5px 20px; font-weight: bold;">Add</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Charges -->
+        <div class="form-card" *ngIf="currentView === 'charges'">
+            <div class="form-header">
+                <span>Lab ChargeCode Details</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+                    <div class="label-col">Investigation Type <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.invType">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <div class="label-col">Department <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.department">
+                            <option value="">Select</option>
+                            <option *ngFor="let dep of departments" [value]="dep">{{dep}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Investigation <span class="required">*</span> :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.investigation">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Organization Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.orgType">
+                            <option *ngFor="let org of ['Hospital', 'TPA', 'Insurance']" [value]="org">{{org}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" [(ngModel)]="chargesForm.copyTo">
+                            <span>Copy to</span>
+                        </div>
+                    </div>
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+
+                    <div class="label-col">Organization Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="chargesForm.targetOrgType">
+                            <option *ngFor="let org of ['Hospital', 'TPA', 'Insurance']" [value]="org">{{org}}</option>
+                        </select>
+                    </div>
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <!-- Footer Row -->
+                    <div class="full-row"
+                        style="grid-column: 1 / -1; margin-top: 20px; background: #f9f9f9; padding: 10px; border-top: 1px solid #eee;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 20px;">
+
+                            <div>
+                                <label style="font-size: 12px; font-weight: bold; color: #555;">Hospital
+                                    Percentage</label>
+                                <input type="number" class="form-control" [(ngModel)]="chargesForm.hospitalPercent">
+                            </div>
+
+                            <div>
+                                <label style="font-size: 12px; font-weight: bold; color: #555;">Total Amount</label>
+                                <input type="number" class="form-control" [(ngModel)]="chargesForm.totalAmount">
+                            </div>
+
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: flex-end; align-items: flex-end; height: 100%; gap: 10px;">
+                                    <span
+                                        style="font-size: 13px; font-weight: bold; padding-bottom: 5px;">Incr./Decr.(%)</span>
+                                    <button class="btn-tool">Apply To All</button>
+                                    <input type="number" style="width: 50px; padding: 5px;"
+                                        [(ngModel)]="chargesForm.increment">
+                                    <button class="btn-tool">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Report Status -->
+        <div class="form-card" *ngIf="currentView === 'report-status'" style="max-width: 1000px;">
+            <div class="form-header">
+                <span>Report Status</span>
+            </div>
+            <div class="form-body" style="padding: 0;">
+                <table class="data-table" style="border: none;">
+                    <thead>
+                        <tr>
+                            <th>LabNo</th>
+                            <th>Patient Name</th>
+                            <th>Test Name</th>
+                            <th>Report Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of reportStatusData">
+                            <td>{{ item.labNo }}</td>
+                            <td>{{ item.patientName }}</td>
+                            <td>{{ item.testName }}</td>
+                            <td [class.status-reg]="item.status === 'Registered'"
+                                [class.status-col]="item.status === 'Sample Collected'">
+                                {{ item.status }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Test Cancellation -->
+        <div class="form-card" *ngIf="currentView === 'test-cancellation'">
+            <div class="form-header">
+                <span>Test Cancellation</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+
+                    <div class="label-col">Name|MR|<span
+                            style="background: #33b5e5; color: white; padding: 0 2px;">Lab</span>|Mobile :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.searchName">
+                    </div>
+
+                    <div class="label-col">Date :</div>
+                    <div class="input-col">
+                        <span style="font-weight: bold; font-size: 13px;">{{ cancellationForm.date }}</span>
+                    </div>
+
+                    <!-- Bill Details Section Title -->
+                    <div class="full-row section-title" style="grid-column: 1 / -1;">Bill Details</div>
+
+                    <div class="label-col">Total Amount(in Rs.) :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.totalAmount"></div>
+                    <div class="label-col">Disc Amt :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.discAmt"></div>
+
+                    <div class="label-col">Net Amount :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.netAmount"></div>
+                    <div class="label-col">Paid Amount :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.paidAmount"></div>
+
+                    <div class="label-col">Due Amount :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.dueAmount"></div>
+                    <div class="label-col">Disc(%) :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.discPercent"></div>
+
+                    <div class="label-col">Refunded Amount :</div>
+                    <div class="input-col"><input type="text" class="form-control"
+                            [(ngModel)]="cancellationForm.refundedAmount"></div>
+                    <div class="label-col">Disc. Adj Amt :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.discAdjAmt"></div>
+
+                    <!-- Patient Details Section Title -->
+                    <div class="full-row section-title" style="grid-column: 1 / -1; margin-top: 10px;">Patient Details
+                    </div>
+
+                    <div class="label-col">Patient Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="cancellationForm.patientType">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="label-col"></div>
+                    <div class="input-col"></div>
+
+                    <div class="label-col">First Name :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="cancellationForm.firstName" style="width: 60px;">
+                            <option value="Mr">Mr</option>
+                        </select>
+                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.firstNameText"
+                            placeholder="FirstName">
+                    </div>
+
+                    <div class="label-col">Middle Name :</div>
+                    <div class="input-col">
+                        <label style="margin-right: 5px;">: Middle Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.middleName">
+                    </div>
+
+                    <div class="label-col">Last Name :</div>
+                    <div class="input-col">
+                        <label style="margin-right: 5px;">: Last Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.lastName">
+                    </div>
+
+                    <div class="label-col">Age(y/m/d) :</div>
+                    <div class="input-col"><input type="text" class="form-control" [(ngModel)]="cancellationForm.age">
+                    </div>
+
+                    <!-- Simplified remaining fields for brevity based on screenshot flow -->
+                    <div class="full-row section-title" style="grid-column: 1 / -1; margin-top: 10px;">Refund Details
+                    </div>
+
+                    <div class="label-col">Total Refund Amt :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.totalRefundAmt"></div>
+                    <div class="label-col">Discount Adjusted :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.discountAdjusted"></div>
+
+                    <div class="label-col">Net Refundable Amount :</div>
+                    <div class="input-col"><input type="number" class="form-control"
+                            [(ngModel)]="cancellationForm.netRefundableAmt"></div>
+                    <div class="label-col">Adjustments :</div>
+                    <div class="input-col"><input type="text" class="form-control"
+                            [(ngModel)]="cancellationForm.adjustments"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Registration -->
+        <div class="form-card" *ngIf="currentView === 'registration'">
+            <div class="form-header">
+                <span>Registration</span>
+            </div>
+
+            <div class="form-body">
+                <div style="text-align: right; font-weight: bold; font-size: 13px; margin-bottom: 10px; color: #555;">
+                    Date : {{ regForm.date }}
+                </div>
+
+                <!-- Patient Details Grid -->
+                <div class="form-grid">
+
+                    <!-- Row 1 -->
+                    <div class="label-col">Patient Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="regForm.patientType" style="width: 150px;">
+                            <option *ngFor="let t of patientTypes" [value]="t">{{t}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Name|<span
+                            style="background: #33b5e5; color: white; padding: 0 2px;">MR</span>|Mobile :</div>
+                    <div class="input-col" style="position: relative;">
+                        <input type="text" class="form-control" [(ngModel)]="regForm.mrNo"
+                            (input)="searchUser(regForm.mrNo)">
+                        <!-- Autocomplete Dropdown -->
+                        <div class="autocomplete-dropdown" *ngIf="showUserDropdown">
+                            <div class="dropdown-item" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
+                                {{ user }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="label-col">First Name :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="regForm.title"
+                            style="width: 60px; margin-right: 5px;">
+                            <option *ngFor="let t of titles" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" [(ngModel)]="regForm.firstName">
+                    </div>
+
+                    <div class="label-col">Middle Name :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="label-col">Last Name :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="regForm.lastName">
+                    </div>
+
+                    <div class="label-col">Age(y/m/d) :</div>
+                    <div class="input-col" style="gap: 5px;">
+                        <input type="text" class="form-control" placeholder="Years" style="width: 50px;">
+                        <input type="text" class="form-control" placeholder="Month" style="width: 50px;">
+                        <input type="text" class="form-control" placeholder="Days" style="width: 50px;">
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="label-col">Gender :</div>
+                    <div class="input-col">
+                        <div class="radio-group">
+                            <input type="radio" name="gender" [(ngModel)]="regForm.gender" value="Male"> Male
+                            <input type="radio" name="gender" [(ngModel)]="regForm.gender" value="Female"> Female
+                        </div>
+                    </div>
+
+                    <div class="label-col">Mobile :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="regForm.mobile" style="width: 150px;">
+                        <input type="checkbox" style="margin-left: 10px;">
+                    </div>
+
+                    <!-- Row 5 -->
+                    <div class="label-col">Cons Doctor :</div>
+                    <div class="input-col">
+                        <select class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Referral Doctor :</div>
+                    <div class="input-col">
+                        <select class="form-control" style="width: 200px;">
+                            <option value="">Select</option>
+                        </select>
+                        <i class="ph-fill ph-plus-circle"
+                            style="color: #6da43d; font-size: 20px; cursor: pointer; margin-left: 5px;"></i>
+                    </div>
+
+                    <!-- Row 6 -->
+                    <div class="label-col">PRO :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="regForm.pro">
+                            <option value="">Select</option>
+                            <option *ngFor="let p of proList" [value]="p">{{p}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col"></div>
+                    <div class="input-col"></div> <!-- Spacer -->
+
+                    <!-- Row 7 - Test Search -->
+                    <div class="label-col">Test Name :</div>
+                    <div class="input-col" style="position: relative;">
+                        <input type="text" class="form-control" [(ngModel)]="billing.testName"
+                            (input)="searchTest(billing.testName)">
+                        <!-- Autocomplete Dropdown -->
+                        <div class="autocomplete-dropdown" *ngIf="showTestDropdown">
+                            <div class="dropdown-header">
+                                <span>have</span> <span>have a</span> <span>how</span>
+                            </div>
+                            <div class="dropdown-item" *ngFor="let t of filteredTestNames" (click)="selectTest(t)">
+                                {{ t }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="label-col">Test/Package :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="billing.testPackage">
+                            <option value="Test">Test</option>
+                            <option value="Package">Package</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Test Selection Table -->
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Rate</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let test of selectedTests">
+                                <td>{{ test.code }}</td>
+                                <td>{{ test.name }}</td>
+                                <td style="text-align: right;">{{ test.rate.toFixed(2) }}</td>
+                                <td style="text-align: center; color: red; cursor: pointer;">
+                                    <i class="ph-bold ph-x"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Totals Grid -->
+                <div class="form-grid" style="margin-top: 20px;">
+
+                    <div class="label-col">Total Amount :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [ngModel]="billing.totalAmount.toFixed(2)" readonly>
+                    </div>
+
+                    <div class="label-col">Disc Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="billing.discType" (change)="calculateTotals()">
+                            <option *ngFor="let d of discTypes" [value]="d">{{d}}</option>
+                        </select>
+                    </div>
+
+                    <div class="label-col">Discount Amount :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="billing.discountAmount"
+                            (change)="calculateTotals()">
+                    </div>
+
+                    <div class="label-col">Disc(%) :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="billing.discPercent"
+                            (change)="calculateTotals()">
+                    </div>
+
+                    <div class="label-col">Net Amount :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [ngModel]="billing.netAmount.toFixed(2)" readonly>
+                    </div>
+
+                    <div class="label-col">Paid Amount :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="billing.paidAmount"
+                            (change)="calculateTotals()">
+                    </div>
+
+                    <div class="label-col">Due Amount :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [ngModel]="billing.dueAmount.toFixed(2)" readonly>
+                    </div>
+
+                    <div class="label-col">Remarks :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="billing.remarks">
+                    </div>
+
+                    <div class="label-col">Payment Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="billing.paymentType">
+                            <option *ngFor="let p of paymentTypes" [value]="p">{{p}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

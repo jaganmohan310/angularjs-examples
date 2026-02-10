@@ -1,0 +1,139 @@
+.radiology-container {
+    display: flex;
+    height: 100%;
+    background-color: #f0f2f5;
+    gap: 5px;
+}
+
+.rad-sidebar {
+    width: 200px;
+    background: white;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.rad-header {
+    background: #62a1d6;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.rad-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.menu-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    background: linear-gradient(to bottom, #ffffff, #f1f1f1);
+    margin: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    color: #444;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background: #e9eff5;
+}
+
+.menu-item.active {
+    background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    border: 1px solid #bcccdc;
+    font-weight: bold;
+}
+
+.rad-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Reusing Form Card Styles from shared/mgmt css if available, else defining here */
+.form-card {
+    background: white;
+    border: 1px solid #bcccdc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.form-header {
+    background: linear-gradient(180deg, #62a1d6 0%, #488bc4 100%);
+    color: white;
+    padding: 8px 15px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.form-body {
+    padding: 20px;
+    background: #f8fafc;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    align-items: center;
+}
+
+.label-col {
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-col {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.required {
+    color: red;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+.btn-tool {
+    padding: 4px 15px;
+    border: 1px solid #aaa;
+    background: linear-gradient(#f9f9f9, #e3e3e3);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-tool:hover {
+    background: #e0e0e0;
+}

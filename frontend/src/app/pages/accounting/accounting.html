@@ -1,0 +1,182 @@
+<div class="accounting-container">
+    <div class="module-wrapper">
+        <!-- Sidebar within Accounting -->
+        <div class="module-sidebar">
+            <div class="sidebar-header">
+                <h3>Account</h3>
+            </div>
+            <nav class="inner-nav">
+                <a class="nav-item" [class.active]="currentView === 'transactions'" (click)="setView('transactions')">
+                    Transactions
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="module-content">
+            <!-- View: Transactions -->
+            <div class="form-card" *ngIf="currentView === 'transactions'">
+                <div class="form-header" style="justify-content: space-between;">
+                    <span>Transactions</span>
+                    <div class="toolbar-actions">
+                        <button class="btn-tool" (click)="saveTransaction()">
+                            <i class="ph-fill ph-floppy-disk"></i> Save
+                        </button>
+                        <button class="btn-tool">
+                            <i class="ph-fill ph-pencil"></i> Edit
+                        </button>
+                        <button class="btn-tool">
+                            <i class="ph-fill ph-printer"></i> Print
+                        </button>
+                        <button class="btn-tool">
+                            <i class="ph-fill ph-magnifying-glass"></i> Search
+                        </button>
+                        <button class="btn-tool">
+                            <i class="ph-fill ph-trash"></i> Delete
+                        </button>
+                        <button class="btn-tool" (click)="clearForm()">
+                            <i class="ph-fill ph-x-circle"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-body">
+                    <div class="form-grid">
+                        <!-- Transaction Type -->
+                        <div class="label-col">Transaction Type :</div>
+                        <div class="input-col">
+                            <div class="radio-group-modern">
+                                <label class="radio-label">
+                                    <input type="radio" name="txType" value="Income" [(ngModel)]="transactionForm.type">
+                                    <span class="custom-radio"></span>
+                                    Income(Cr)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="txType" value="Expense"
+                                        [(ngModel)]="transactionForm.type">
+                                    <span class="custom-radio"></span>
+                                    Expense(Dr)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <!-- Party Type -->
+                        <div class="label-col">Party Type :</div>
+                        <div class="input-col">
+                            <select class="form-control-modern" [(ngModel)]="transactionForm.partyType">
+                                <option value="">Select</option>
+                                <option *ngFor="let p of partyTypes" [value]="p">{{p}}</option>
+                            </select>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <!-- Patient Details Checkbox -->
+                        <div class="full-row" style="margin: 10px 0;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" [(ngModel)]="transactionForm.isPatientDetails">
+                                <span class="checkmark"></span>
+                                Patient Details
+                            </label>
+                        </div>
+
+                        <!-- Billing Departments -->
+                        <div class="full-row">
+                            <p
+                                style="font-weight: 600; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">
+                                Billing Departments</p>
+                            <div class="radio-group-modern grid-radios">
+                                <label class="radio-label" *ngFor="let dept of billingDepts">
+                                    <input type="radio" name="billingDept" [value]="dept"
+                                        [(ngModel)]="transactionForm.billingDept">
+                                    <span class="custom-radio"></span>
+                                    {{dept}}
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Form Separator -->
+                        <div class="full-row separator"></div>
+
+                        <!-- Org Bill No -->
+                        <div class="label-col">Orginal Bill No :</div>
+                        <div class="input-col">
+                            <input type="text" class="form-control-modern" [(ngModel)]="transactionForm.orgBillNo">
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <!-- Account Heads -->
+                        <div class="label-col">Account Head :</div>
+                        <div class="input-col">
+                            <select class="form-control-modern" [(ngModel)]="transactionForm.accountHead">
+                                <option value="">Select</option>
+                                <option *ngFor="let h of accountHeads" [value]="h">{{h}}</option>
+                            </select>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <div class="label-col">Account Sub Head :</div>
+                        <div class="input-col">
+                            <select class="form-control-modern" [(ngModel)]="transactionForm.accountSubHead">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <div class="label-col">Account Sub Sub Head :</div>
+                        <div class="input-col">
+                            <select class="form-control-modern" [(ngModel)]="transactionForm.accountSubSubHead">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <!-- Party Details -->
+                        <div class="label-col">Name Of The Party :</div>
+                        <div class="input-col">
+                            <input type="text" class="form-control-modern" [(ngModel)]="transactionForm.partyName">
+                        </div>
+                        <div class="label-col">Contact No :</div>
+                        <div class="input-col">
+                            <input type="text" class="form-control-modern" [(ngModel)]="transactionForm.contactNo">
+                        </div>
+
+                        <div class="label-col">Address :</div>
+                        <div class="full-row" style="grid-column: 2 / 5;">
+                            <textarea class="form-control-modern" rows="2"
+                                [(ngModel)]="transactionForm.address"></textarea>
+                        </div>
+
+                        <!-- Payment and Amount -->
+                        <div class="label-col">Payment Type :</div>
+                        <div class="input-col">
+                            <select class="form-control-modern" [(ngModel)]="transactionForm.paymentType">
+                                <option *ngFor="let p of paymentTypes" [value]="p">{{p}}</option>
+                            </select>
+                        </div>
+                        <div class="label-col"></div>
+                        <div class="input-col"></div>
+
+                        <div class="label-col">Amount :</div>
+                        <div class="input-col">
+                            <input type="text" class="form-control-modern highlight-input"
+                                [(ngModel)]="transactionForm.amount" placeholder="0.00">
+                        </div>
+                        <div class="label-col">Remarks :</div>
+                        <div class="input-col" style="grid-column: 4 / 5;">
+                            <textarea class="form-control-modern" rows="2"
+                                [(ngModel)]="transactionForm.remarks"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

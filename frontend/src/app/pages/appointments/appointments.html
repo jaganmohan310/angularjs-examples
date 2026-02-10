@@ -1,0 +1,319 @@
+<div class="apt-container">
+    <!-- Sub-Navigation -->
+    <nav class="sub-nav-bar">
+        <button (click)="setView('dashboard')" [class.active]="currentView === 'dashboard'">
+            <i class="ph ph-chart-pie"></i> Dashboard
+        </button>
+        <button (click)="setView('book')" [class.active]="currentView === 'book'">
+            <i class="ph ph-calendar-plus"></i> Book Appointment
+        </button>
+        <button (click)="setView('list')" [class.active]="currentView === 'list'">
+            <i class="ph ph-list-bullets"></i> Upcoming
+        </button>
+        <button (click)="setView('schedule')" [class.active]="currentView === 'schedule'">
+            <i class="ph ph-calendar"></i> Schedules
+        </button>
+        <button (click)="setView('history')" [class.active]="currentView === 'history'">
+            <i class="ph ph-clock-counter-clockwise"></i> History / Reports
+        </button>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <div *ngIf="currentView === 'dashboard'" class="view-content fade-in">
+        <div class="stats-grid">
+            <div *ngFor="let stat of stats" class="stat-card" [ngClass]="stat.color">
+                <div class="stat-icon"><i [class]="stat.icon"></i></div>
+                <div class="stat-info">
+                    <span class="label">{{stat.label}}</span>
+                    <h3 class="value">{{stat.value}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="apt-main-grid">
+            <div class="content-card appointments-card">
+                <div class="card-header">
+                    <h4>Queue Insight</h4>
+                    <button class="btn-text" (click)="setView('list')">Full List</button>
+                </div>
+                <div class="apt-mini-list">
+                    <div *ngFor="let apt of appointments.slice(0, 4)" class="apt-mini-item"
+                        (click)="setView('detail', apt)">
+                        <div class="time-box">
+                            <span class="time">{{apt.time}}</span>
+                            <span class="date">{{apt.date}}</span>
+                        </div>
+                        <div class="patient-box">
+                            <strong>{{apt.name}}</strong>
+                            <span>{{apt.doctor}}</span>
+                        </div>
+                        <span class="status-dot" [ngClass]="apt.status.toLowerCase()"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card doctors-card">
+                <h4>Clinic Performance</h4>
+                <div class="dummy-chart-circle">
+                    <div class="circle-inner">
+                        <strong>82%</strong>
+                        <span>Efficiency</span>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <div class="l-item"><span class="dot b"></span> <span>On-Time</span></div>
+                    <div class="l-item"><span class="dot y"></span> <span>Delayed</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOK APPOINTMENT FORM -->
+    <div *ngIf="currentView === 'book'" class="view-content fade-in">
+        <div class="form-container">
+            <header class="form-header">
+                <h3>Schedule New Booking</h3>
+                <p>Assign a patient to a doctor's clinic slot.</p>
+            </header>
+
+            <div class="form-grid">
+                <div class="form-section">
+                    <h4>Patient Profile</h4>
+                    <div class="input-group">
+                        <label>Patient Name</label>
+                        <input type="text" placeholder="Full Name">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Patient ID / Phone</label>
+                            <input type="text" placeholder="e.g. 9988776655">
+                        </div>
+                        <div class="input-group">
+                            <label>Type</label>
+                            <select>
+                                <option>New Consultation</option>
+                                <option>Follow-up</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Doctor & Time Slot</h4>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Department</label>
+                            <select>
+                                <option>Cardiology</option>
+                                <option>Neurology</option>
+                                <option>Orthopedics</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Doctor</label>
+                            <select>
+                                <option *ngFor="let doc of doctors">{{doc.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Date</label>
+                            <input type="date">
+                        </div>
+                        <div class="input-group">
+                            <label>Time Block</label>
+                            <select>
+                                <option>09:00 - 09:30 AM</option>
+                                <option>10:00 - 10:30 AM</option>
+                                <option>11:00 - 11:30 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-outline" (click)="setView('dashboard')">Cancel</button>
+                <button class="btn-primary" (click)="bookAppointment()">Confirm & Send SMS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPOINTMENT LIST -->
+    <div *ngIf="currentView === 'list'" class="view-content fade-in">
+        <div class="toolbar">
+            <div class="search-box">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Filter by name, doctor or ID...">
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table class="apt-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Patient Details</th>
+                        <th>Consultant</th>
+                        <th>Slot Profile</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let apt of filteredAppointments">
+                        <td><span class="apt-id">{{apt.id}}</span></td>
+                        <td><strong class="clickable" (click)="setView('detail', apt)">{{apt.name}}</strong></td>
+                        <td>
+                            <div class="doc-info">
+                                <span>{{apt.doctor}}</span>
+                                <small>{{apt.dept}}</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="time-info">
+                                <span>{{apt.date}}</span>
+                                <small>{{apt.time}}</small>
+                            </div>
+                        </td>
+                        <td><span class="status-badge" [ngClass]="apt.status.toLowerCase()">{{apt.status}}</span></td>
+                        <td>
+                            <div class="actions">
+                                <button class="icon-btn" (click)="setView('detail', apt)"><i
+                                        class="ph ph-eye"></i></button>
+                                <button class="icon-btn" (click)="rescheduleAppointment(apt)"><i
+                                        class="ph ph-calendar-blank"></i></button>
+                                <button class="icon-btn danger" (click)="cancelAppointment(apt)"><i
+                                        class="ph ph-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- APPOINTMENT DETAILS (High Fidelity) -->
+    <div *ngIf="currentView === 'detail' && selectedApt" class="view-content fade-in">
+        <div class="detail-card">
+            <header class="detail-header">
+                <button class="back-link" (click)="setView('list')"><i class="ph ph-arrow-left"></i> Back to
+                    List</button>
+                <div class="h-main">
+                    <h3>Appointment Summary</h3>
+                    <span class="status-pill big"
+                        [ngClass]="selectedApt.status.toLowerCase()">{{selectedApt.status}}</span>
+                </div>
+            </header>
+
+            <div class="detail-body">
+                <div class="d-section">
+                    <h5><i class="ph ph-user"></i> Patient Information</h5>
+                    <div class="d-grid">
+                        <div class="d-item"><label>Full Name</label><strong>{{selectedApt.name}}</strong></div>
+                        <div class="d-item"><label>Patient
+                                ID</label><strong>P-552{{selectedApt.id.split('-')[1]}}</strong></div>
+                        <div class="d-item"><label>Age / Gender</label><strong>{{selectedApt.age}}Y / Male</strong>
+                        </div>
+                        <div class="d-item"><label>Contact No.</label><strong>+91 {{selectedApt.phone}}</strong></div>
+                    </div>
+                </div>
+
+                <div class="d-section">
+                    <h5><i class="ph ph-stethoscope"></i> Clinical Details</h5>
+                    <div class="d-grid">
+                        <div class="d-item"><label>Consulting Doctor</label><strong>{{selectedApt.doctor}}</strong>
+                        </div>
+                        <div class="d-item"><label>Department</label><strong>{{selectedApt.dept}}</strong></div>
+                        <div class="d-item"><label>Appt Type</label><strong>{{selectedApt.type}}</strong></div>
+                        <div class="d-item"><label>Reason</label><strong>General Consultation</strong></div>
+                    </div>
+                </div>
+
+                <div class="d-section highlight">
+                    <div class="sched-info">
+                        <div class="s-box">
+                            <i class="ph ph-calendar"></i>
+                            <div><label>Date</label><strong>{{selectedApt.date}}</strong></div>
+                        </div>
+                        <div class="s-box">
+                            <i class="ph ph-clock"></i>
+                            <div><label>Time Slot</label><strong>{{selectedApt.time}}</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="detail-footer">
+                <button class="btn-primary" (click)="rescheduleAppointment(selectedApt)">Reschedule Appointment</button>
+                <button class="btn-outline danger-text" (click)="cancelAppointment(selectedApt)">Cancel Booking</button>
+                <button class="btn-outline"><i class="ph ph-printer"></i> Print Receipt</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- HISTORY & REPORTS -->
+    <div *ngIf="currentView === 'history'" class="view-content fade-in">
+        <div class="history-view">
+            <div class="filter-strip">
+                <div class="filter-group">
+                    <label>Date Range</label>
+                    <div class="range-inputs">
+                        <input type="date"> <span>to</span> <input type="date">
+                    </div>
+                </div>
+                <button class="btn-primary btn-sm">Generate Report</button>
+                <button class="btn-outline btn-sm"><i class="ph ph-download"></i> Export CSV</button>
+            </div>
+
+            <div class="table-card">
+                <table class="apt-table mini">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let h of history">
+                            <td>{{h.date}}</td>
+                            <td><strong>{{h.name}}</strong></td>
+                            <td>{{h.doctor}}</td>
+                            <td>{{h.type}}</td>
+                            <td><span class="status-badge"
+                                    [ngClass]="h.status.toLowerCase().replace(' ', '-')">{{h.status}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHEDULE GRID -->
+    <div *ngIf="currentView === 'schedule'" class="view-content fade-in">
+        <div class="schedule-grid">
+            <div *ngFor="let doc of doctors" class="doc-schedule-card">
+                <div class="doc-header">
+                    <img [src]="'https://api.dicebear.com/7.x/avataaars/svg?seed=' + doc.name" alt="Avatar">
+                    <div class="doc-meta">
+                        <strong>{{doc.name}}</strong>
+                        <span>{{doc.dept}}</span>
+                    </div>
+                </div>
+                <p class="doc-bio">{{doc.bio}}</p>
+                <div class="slots-container">
+                    <span class="slot booked">09:00 AM</span>
+                    <span class="slot available">09:30 AM</span>
+                    <span class="slot booked">10:00 AM</span>
+                    <span class="slot available">10:30 AM</span>
+                    <span class="slot available">11:00 AM</span>
+                    <span class="slot booked">11:30 AM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

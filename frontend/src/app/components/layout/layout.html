@@ -24,28 +24,12 @@
             </div>
 
             <div class="nav-section">
-                <p class="section-title">IN-PATIENT SERVICES</p>
+                <p class="section-title">{{sidebarTitle}}</p>
                 <nav class="side-nav">
-                    <a class="nav-link" [class.active]="activeScreen === 'dashboard'" (click)="setScreen('dashboard')">
-                        <i class="ph-bold ph-chart-pie"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a class="nav-link" [class.active]="activeScreen === 'admission'" (click)="setScreen('admission')">
-                        <i class="ph-bold ph-user-plus"></i>
-                        <span>Registration</span>
-                    </a>
-                    <a class="nav-link" [class.active]="activeScreen === 'cancellation'"
-                        (click)="setScreen('cancellation')">
-                        <i class="ph-bold ph-prohibit"></i>
-                        <span>Cancellation</span>
-                    </a>
-                    <a class="nav-link" [class.active]="activeScreen === 'patients'" (click)="setScreen('patients')">
-                        <i class="ph-bold ph-users"></i>
-                        <span>Patient List</span>
-                    </a>
-                    <a class="nav-link" [class.active]="activeScreen === 'procedure'" (click)="setScreen('procedure')">
-                        <i class="ph-bold ph-first-aid-kit"></i>
-                        <span>Procedures</span>
+                    <a *ngFor="let link of sidebarLinks" class="nav-link" [class.active]="activeScreen === link.id"
+                        (click)="setScreen(link.id)">
+                        <i [class]="'ph-bold ' + link.icon"></i>
+                        <span>{{link.label}}</span>
                     </a>
                 </nav>
             </div>
@@ -109,7 +93,8 @@
             <!-- Workspace Toolbar -->
             <div class="workspace-controls">
                 <div class="control-group">
-                    <button class="control-btn primary"><i class="ph ph-floppy-disk"></i> Save Data</button>
+                    <button class="control-btn primary" (click)="onGlobalSave()"><i class="ph ph-floppy-disk"></i> Save
+                        Data</button>
                     <button class="control-btn"><i class="ph ph-pencil"></i> Edit</button>
                     <button class="control-btn"><i class="ph ph-printer"></i> Print</button>
                 </div>
