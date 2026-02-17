@@ -1,0 +1,255 @@
+
+> frontend@0.0.0 build
+> ng build
+
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+Application bundle generation failed. [8.729 seconds] - 2026-02-13T08:59:50.528Z
+
+X [ERROR] TS2367: This comparison appears to be unintentional because the types '"ip-admission"' and '"ip-advance-payment"' have no overlap. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:308:42:
+      308 Γöé ...v class="form-card" *ngIf="currentView === 'ip-advance-payment'">
+          Γò╡                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2367: This comparison appears to be unintentional because the types '"ip-admission"' and '"ip-transfer-doctor"' have no overlap. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:428:42:
+      428 Γöé ...v class="form-card" *ngIf="currentView === 'ip-transfer-doctor'">
+          Γò╡                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2367: This comparison appears to be unintentional because the types '"ip-admission"' and '"ip-transfer-bed"' have no overlap. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:590:42:
+      590 Γöé ...<div class="form-card" *ngIf="currentView === 'ip-transfer-bed'">
+          Γò╡                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1406:67:
+      1406 Γöé ...gModel)]="dueCollectionForm.pharmacyBill.totalReceivable"></div>
+           Γò╡                                ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1406:67:
+      1406 Γöé ...gModel)]="dueCollectionForm.pharmacyBill.totalReceivable"></div>
+           Γò╡                                ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1409:67:
+      1409 Γöé ...(ngModel)]="dueCollectionForm.pharmacyBill.totalReceived"></div>
+           Γò╡                                  ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1409:67:
+      1409 Γöé ...(ngModel)]="dueCollectionForm.pharmacyBill.totalReceived"></div>
+           Γò╡                                  ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1413:67:
+      1413 Γöé ...   [(ngModel)]="dueCollectionForm.pharmacyBill.dueAmount"></div>
+           Γò╡                                      ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'pharmacyBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1413:67:
+      1413 Γöé ...   [(ngModel)]="dueCollectionForm.pharmacyBill.dueAmount"></div>
+           Γò╡                                      ~~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1423:67:
+      1423 Γöé ...ngModel)]="dueCollectionForm.summaryBill.totalReceivable"></div>
+           Γò╡                                 ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1423:67:
+      1423 Γöé ...ngModel)]="dueCollectionForm.summaryBill.totalReceivable"></div>
+           Γò╡                                 ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1426:67:
+      1426 Γöé ...[(ngModel)]="dueCollectionForm.summaryBill.totalReceived"></div>
+           Γò╡                                   ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1426:67:
+      1426 Γöé ...[(ngModel)]="dueCollectionForm.summaryBill.totalReceived"></div>
+           Γò╡                                   ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1430:67:
+      1430 Γöé ...     [(ngModel)]="dueCollectionForm.summaryBill.totalDue"></div>
+           Γò╡                                        ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1430:67:
+      1430 Γöé ...     [(ngModel)]="dueCollectionForm.summaryBill.totalDue"></div>
+           Γò╡                                        ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1433:92:
+      1433 Γöé ...-control" [(ngModel)]="dueCollectionForm.summaryBill.partyType">
+           Γò╡                                             ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1433:92:
+      1433 Γöé ...-control" [(ngModel)]="dueCollectionForm.summaryBill.partyType">
+           Γò╡                                             ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1440:92:
+      1440 Γöé ...ontrol" [(ngModel)]="dueCollectionForm.summaryBill.paymentType">
+           Γò╡                                           ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] TS2339: Property 'summaryBill' does not exist on type '{ searchTerm: string; patientName: string; ipNo: string; mrNo: string; totalDue: number; mobileNo: string; gender: string; address: string; city: string; referralType: string; referralName: string; ipBill: { ...; }; labBill: { ...; }; collection: { ...; }; age: string; }'. [plugin angular-compiler]
+
+    src/app/features/patient/components/in-patient/in-patient.html:1440:92:
+      1440 Γöé ...ontrol" [(ngModel)]="dueCollectionForm.summaryBill.paymentType">
+           Γò╡                                           ~~~~~~~~~~~
+
+  Error occurs in the template of component InPatient.
+
+    src/app/features/patient/components/in-patient/in-patient.ts:13:17:
+      13 Γöé     templateUrl: './in-patient.html',
+         Γò╡                  ~~~~~~~~~~~~~~~~~~~
+
+

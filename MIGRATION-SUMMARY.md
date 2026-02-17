@@ -199,18 +199,23 @@ setScreen(screen: string) {
 
 ```
 hospital-management/
-├── frontend/                    # Angular application
+├── hms-frontend/                # Angular application
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── components/     # Reusable components
-│   │   │   ├── pages/          # Page components
-│   │   │   ├── services/       # Business logic
+│   │   │   ├── core/           # Core services & guards
+│   │   │   ├── shared/         # Reusable layouts & components
+│   │   │   ├── services/       # Feature-agnostic API services
+│   │   │   ├── features/       # Modular feature domains
+│   │   │   │   ├── patient/    # In-Patient, Registration
+│   │   │   │   ├── doctor/     # Appointments
+│   │   │   │   ├── diagnostic/ # Lab, Radiology
+│   │   │   │   └── ...         # Other modules
 │   │   │   └── shared-forms.css
-│   │   ├── styles.css          # Global styles
+│   │   ├── styles.css
 │   │   └── index.html
 │   ├── package.json
 │   └── angular.json
-├── .git/                        # Git repository
+├── hms-backend/                 # Spring Boot application
 └── README.md                    # Documentation
 ```
 
