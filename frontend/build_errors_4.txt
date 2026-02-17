@@ -1,0 +1,339 @@
+﻿
+> frontend@0.0.0 build
+> ng build
+
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+Application bundle generation failed. [10.664 seconds] - 2026-02-16T13:58:07.890Z
+
+node.exe : 
+[1m[31m[31mX [41;
+31m[[41;97mERROR[41
+;31m][0m 
+[1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and '"ip-discharge-su
+mmary"' have no 
+overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : 
+NotSpecified: (    [
+1m[31m[31mX...r-co 
+   
+mpiler][0m:String) 
+[    ], 
+RemoteException
+    + 
+FullyQualifiedError  
+  Id : 
+NativeCommandErr    
+or
+ 
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:658:46:
+[37m      658 Γöé 
+...class="form-card" 
+*ngIf="[32mcurrentVi
+ew === 'ip-discharge-
+summary'[37m">
+          Γò╡        
+                     
+[32m~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and 
+'"ip-bill-details"' 
+have no overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:805:46:
+[37m      805 Γöé 
+...<div 
+class="form-card" *ng
+If="[32mcurrentView 
+=== 'ip-bill-details'
+[37m">
+          Γò╡        
+                     
+     [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and '"ip-settlement-b
+ill"' have no 
+overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:880:46:
+[37m      880 Γöé 
+...v 
+class="form-card" *ng
+If="[32mcurrentView 
+=== 'ip-settlement-bi
+ll'[37m">
+          Γò╡        
+                     
+  [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and 
+'"ip-test-results"' 
+have no overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:1011:46:
+[37m      1011 Γöé 
+...div 
+class="form-card" *ng
+If="[32mcurrentView 
+=== 'ip-test-results'
+[37m">
+           Γò╡       
+                     
+     [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and '"ip-medical-cert
+ificate"' have no 
+overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:1073:46:
+[37m      1073 Γöé 
+...ss="form-card" *ng
+If="[32mcurrentView 
+=== 'ip-medical-certi
+ficate'[37m">
+           Γò╡       
+                   [
+32m~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and '"ip-due-collecti
+on"' have no 
+overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:1290:42:
+[37m      1290 Γöé 
+...v 
+class="form-card" *ng
+If="[32mcurrentView 
+=== 'ip-due-collectio
+n'[37m">
+           Γò╡       
+                     
+   [32m~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mTS2367: This 
+comparison appears 
+to be unintentional 
+because the types 
+'"ip-transfer-bed"' 
+and '"ip-discharge-ca
+ncellation"' have no 
+overlap.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:1421:42:
+[37m      1421 Γöé 
+..."form-card" *ngIf=
+"[32mcurrentView 
+=== 'ip-discharge-can
+cellation'[37m">
+           Γò╡       
+                [32m
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+[39m[22m

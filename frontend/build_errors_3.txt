@@ -1,0 +1,72 @@
+﻿
+> frontend@0.0.0 build
+> ng build
+
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+Application bundle generation failed. [6.247 seconds] - 2026-02-16T13:54:39.631Z
+
+node.exe : 
+[1m[31m[31mX [41;
+31m[[41;97mERROR[41
+;31m][0m 
+[1mNG5002: 
+Unexpected closing 
+tag "div". It may 
+happen when the tag 
+has already been 
+closed by another 
+tag. For more info 
+see https://www.w3.or
+g/TR/html5/syntax.htm
+l#closing-elements-th
+at-have-implied-end-t
+ags[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([1m[3   
+ 1m[31mX...r-com    
+piler][0m:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+    src/app/pages/in-
+patient/in-patient.ht
+ml:1486:0:
+[37m      1486 Γöé 
+[32m</div>[37m
+           Γò╡ 
+[32m~~~~~~[0m
+
+  Error occurs in 
+the template of 
+component InPatient.
+
+    src/app/pages/in-
+patient/in-patient.ts
+:13:17:
+[37m      13 Γöé    
+ templateUrl: [32m'.
+/in-patient.html'[37
+m,
+         Γò╡         
+         [32m~~~~~~~
+~~~~~~~~~~~~[0m
+
+[39m[22m

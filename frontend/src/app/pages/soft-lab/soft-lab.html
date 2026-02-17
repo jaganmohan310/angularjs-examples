@@ -32,6 +32,75 @@
     <!-- Main Content -->
     <div class="lab-content">
 
+        <!-- View: Lab Due Collection -->
+        <div class="form-card" *ngIf="currentView === 'due-collection'">
+            <div class="form-header">
+                <span>Lab Due Collection</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+                    <!-- Row 1: Search & Date -->
+                    <div class="label-col">Patient Search :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="dueCollectionForm.searchName"
+                            placeholder="Name / MR / Mobile">
+                    </div>
+
+                    <div class="label-col">Date :</div>
+                    <div class="input-col">
+                        <input type="date" class="form-control" [(ngModel)]="dueCollectionForm.date">
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="full-row section-title" style="grid-column: 1 / -1; margin-top: 10px;">Bill Details
+                    </div>
+
+                    <!-- Row 2: Bill No & Total -->
+                    <div class="label-col">Bill No :</div>
+                    <div class="input-col">
+                        <input type="text" class="form-control" [(ngModel)]="dueCollectionForm.billNo" readonly>
+                    </div>
+                    <div class="label-col">Total Amount :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="dueCollectionForm.totalAmount" readonly>
+                    </div>
+
+                    <!-- Row 3: Paid & Due -->
+                    <div class="label-col">Paid Amount :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="dueCollectionForm.paidAmount" readonly>
+                    </div>
+                    <div class="label-col">Due Amount :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="dueCollectionForm.dueAmount" readonly>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="full-row section-title" style="grid-column: 1 / -1; margin-top: 10px;">Payment Details
+                    </div>
+
+                    <!-- Row 4: Payment Type & Amount -->
+                    <div class="label-col">Payment Type :</div>
+                    <div class="input-col">
+                        <select class="form-control" [(ngModel)]="dueCollectionForm.paymentType">
+                            <option *ngFor="let p of paymentTypes" [value]="p">{{p}}</option>
+                        </select>
+                    </div>
+                    <div class="label-col">Amount to Pay :</div>
+                    <div class="input-col">
+                        <input type="number" class="form-control" [(ngModel)]="dueCollectionForm.amount">
+                    </div>
+
+                    <!-- Row 5: Remarks -->
+                    <div class="label-col">Remarks :</div>
+                    <div class="input-col" style="grid-column: span 3;">
+                        <input type="text" class="form-control" [(ngModel)]="dueCollectionForm.remarks"
+                            placeholder="Enter remarks...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- View: Test Details -->
         <div class="form-card" *ngIf="currentView === 'test-details'">
             <div class="form-header">
@@ -106,6 +175,7 @@
                     <div class="input-col">
                         <select class="form-control" [(ngModel)]="chargesForm.invType">
                             <option value="">Select</option>
+                            <option *ngFor="let type of investigationTypes" [value]="type">{{type}}</option>
                         </select>
                     </div>
 
@@ -124,6 +194,7 @@
                     <div class="input-col">
                         <select class="form-control" [(ngModel)]="chargesForm.investigation">
                             <option value="">Select</option>
+                            <option *ngFor="let inv of investigationList" [value]="inv">{{inv}}</option>
                         </select>
                     </div>
 
@@ -229,15 +300,15 @@
             <div class="form-body">
                 <div class="form-grid">
 
-                    <div class="label-col">Name|MR|<span
-                            style="background: #33b5e5; color: white; padding: 0 2px;">Lab</span>|Mobile :</div>
+                    <div class="label-col">Patient Search :</div>
                     <div class="input-col">
-                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.searchName">
+                        <input type="text" class="form-control" [(ngModel)]="cancellationForm.searchName"
+                            placeholder="Name / MR / Mobile">
                     </div>
 
                     <div class="label-col">Date :</div>
                     <div class="input-col">
-                        <span style="font-weight: bold; font-size: 13px;">{{ cancellationForm.date }}</span>
+                        <input type="date" class="form-control" [(ngModel)]="cancellationForm.date">
                     </div>
 
                     <!-- Bill Details Section Title -->
@@ -278,7 +349,7 @@
                     <div class="label-col">Patient Type :</div>
                     <div class="input-col">
                         <select class="form-control" [(ngModel)]="cancellationForm.patientType">
-                            <option value="">Select</option>
+                            <option *ngFor="let t of patientTypes" [value]="t">{{t}}</option>
                         </select>
                     </div>
                     <div class="label-col"></div>
@@ -287,7 +358,7 @@
                     <div class="label-col">First Name :</div>
                     <div class="input-col">
                         <select class="form-control" [(ngModel)]="cancellationForm.firstName" style="width: 60px;">
-                            <option value="Mr">Mr</option>
+                            <option *ngFor="let t of titles" [value]="t">{{t}}</option>
                         </select>
                         <input type="text" class="form-control" [(ngModel)]="cancellationForm.firstNameText"
                             placeholder="FirstName">
@@ -295,13 +366,11 @@
 
                     <div class="label-col">Middle Name :</div>
                     <div class="input-col">
-                        <label style="margin-right: 5px;">: Middle Name</label>
                         <input type="text" class="form-control" [(ngModel)]="cancellationForm.middleName">
                     </div>
 
                     <div class="label-col">Last Name :</div>
                     <div class="input-col">
-                        <label style="margin-right: 5px;">: Last Name</label>
                         <input type="text" class="form-control" [(ngModel)]="cancellationForm.lastName">
                     </div>
 
@@ -338,8 +407,9 @@
             </div>
 
             <div class="form-body">
-                <div style="text-align: right; font-weight: bold; font-size: 13px; margin-bottom: 10px; color: #555;">
-                    Date : {{ regForm.date }}
+                <div
+                    style="text-align: right; font-weight: bold; font-size: 13px; margin-bottom: 10px; color: #555; display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+                    Date : <input type="date" class="form-control" [(ngModel)]="regForm.date" style="width: auto;">
                 </div>
 
                 <!-- Patient Details Grid -->
@@ -353,11 +423,10 @@
                         </select>
                     </div>
 
-                    <div class="label-col">Name|<span
-                            style="background: #33b5e5; color: white; padding: 0 2px;">MR</span>|Mobile :</div>
+                    <div class="label-col">Patient Search :</div>
                     <div class="input-col" style="position: relative;">
                         <input type="text" class="form-control" [(ngModel)]="regForm.mrNo"
-                            (input)="searchUser(regForm.mrNo)">
+                            (input)="searchUser(regForm.mrNo)" placeholder="Search Name / MR / Mobile">
                         <!-- Autocomplete Dropdown -->
                         <div class="autocomplete-dropdown" *ngIf="showUserDropdown">
                             <div class="dropdown-item" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
@@ -412,15 +481,17 @@
                     <!-- Row 5 -->
                     <div class="label-col">Cons Doctor :</div>
                     <div class="input-col">
-                        <select class="form-control">
+                        <select class="form-control" [(ngModel)]="regForm.consDoctor">
                             <option value="">Select</option>
+                            <option *ngFor="let doc of doctorsList" [value]="doc">{{doc}}</option>
                         </select>
                     </div>
 
                     <div class="label-col">Referral Doctor :</div>
                     <div class="input-col">
-                        <select class="form-control" style="width: 200px;">
+                        <select class="form-control" style="width: 200px;" [(ngModel)]="regForm.referralDoctor">
                             <option value="">Select</option>
+                            <option *ngFor="let ref of referralDoctorsList" [value]="ref">{{ref}}</option>
                         </select>
                         <i class="ph-fill ph-plus-circle"
                             style="color: #6da43d; font-size: 20px; cursor: pointer; margin-left: 5px;"></i>

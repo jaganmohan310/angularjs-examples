@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+// import { delay } from 'rxjs/operators';
 
 export interface Patient {
     sno: number;
@@ -33,8 +33,8 @@ export class InPatientService {
     constructor() { }
 
     getPatients(): Observable<Patient[]> {
-        // Simulating network delay for professional feel
-        return of(this.mockPatients).pipe(delay(500));
+        // Removed delay for immediate loading
+        return of(this.mockPatients);
     }
 
     getBillDetails(ipNo: string): Observable<any> {
@@ -51,16 +51,16 @@ export class InPatientService {
             totalAmount: 10500,
             totalDiscount: 200,
             totalNet: 10300
-        }).pipe(delay(300));
+        });
     }
 
     admitPatient(data: any): Observable<boolean> {
         console.log('API Call: Admit Patient', data);
-        return of(true).pipe(delay(800));
+        return of(true);
     }
 
     saveSettlement(data: any): Observable<boolean> {
         console.log('API Call: Save Settlement', data);
-        return of(true).pipe(delay(1000));
+        return of(true);
     }
 }

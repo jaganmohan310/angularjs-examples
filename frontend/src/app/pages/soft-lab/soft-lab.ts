@@ -18,9 +18,13 @@ export class SoftLab implements OnInit {
     departments = ['AUDIOLOGY', 'CT SCAN', 'MRI', 'NUEROLOGY', 'RADIOLOGY', 'ULTRASONOGRAPHY', 'ULTRASOUND'];
     patientTypes = ['Direct', 'IP', 'OP'];
     titles = ['Mr', 'Ms', 'Mrs', 'Dr'];
-    paymentTypes = ['Cash', 'Card', 'Due'];
+    paymentTypes = ['Cash', 'Card', 'UPI', 'Cheque', 'Net Banking'];
     discTypes = ['No Discount', 'Percentage', 'Fixed Amount'];
     proList = ['Select', 'PRO1', 'PRO2']; // Placeholder
+    doctorsList = ['Dr. Smith', 'Dr. Jones', 'Dr. Emily', 'Dr. Michael'];
+    referralDoctorsList = ['Dr. Williams', 'Dr. Brown', 'Dr. Davis', 'Dr. Miller'];
+    investigationTypes = ['Pathology', 'Radiology', 'Microbiology', 'Biochemistry'];
+    investigationList = ['Complete Blood Count', 'X-Ray Chest', 'Urine Culture', 'Liver Function Test', 'MRI Brain', 'CT Scan'];
 
     // Auto-complete Data
     users = [
@@ -52,7 +56,7 @@ export class SoftLab implements OnInit {
 
     // Registration Form 
     regForm = {
-        date: '07/02/2021',
+        date: '',
         patientType: 'Direct',
         mrNo: '',
         firstName: '',
@@ -110,7 +114,7 @@ export class SoftLab implements OnInit {
     // Test Cancellation Form
     cancellationForm = {
         searchName: '',
-        date: '07/02/2021',
+        date: '',
         totalAmount: 0,
         netAmount: 0,
         dueAmount: 0,
@@ -148,6 +152,19 @@ export class SoftLab implements OnInit {
         remarks: ''
     };
 
+    // Due Collection Form
+    dueCollectionForm = {
+        searchName: '',
+        date: '',
+        billNo: '',
+        totalAmount: 0,
+        paidAmount: 0,
+        dueAmount: 0,
+        paymentType: 'Cash',
+        amount: 0,
+        remarks: ''
+    };
+
     // Test Selection Table
     selectedTests = [
         { code: 'CA125', name: 'CA 125', rate: 1200.00 },
@@ -166,7 +183,9 @@ export class SoftLab implements OnInit {
         'CYTOLOGY': ['ASCITIC FLUID FOR CYTOLOGY', 'ASCTIC FLUID FOR CYTOLOGY', 'BONE MARROW ASPIRATION', 'CSF FOR CYTOLOGY', 'FNAC', 'PAP SMEAR'],
         'HEAMATOLOGY': ['ABSOLUTE EOSINOPHIL COUNT', 'ABSOLUTE NEUTROPHIL COUNT', 'ANTI THYROID ANTIBODIES(ATG&AMA)', 'BLOOD GLUCOSE(F & PP)', 'C.E.A', 'CELL COUNT'],
         // Default empty for others for now
-        'HISTOPATHOLOGY': [], 'IMMUNOASSAYS': ['ANTI MULLARIAN HORMONE (AMH)', 'SERUM IGE LEVEL ESTIMATION'], 'MICROBIOLOGY': [],
+        'HISTOPATHOLOGY': ['BIOPSY SMALL', 'BIOPSY MEDIUM', 'BIOPSY LARGE', 'IMMUNOHISTOCHEMISTRY', 'FROZEN SECTION', 'CYTOLOGY FLUID', 'PAP SMECC'],
+        'IMMUNOASSAYS': ['ANTI MULLARIAN HORMONE (AMH)', 'SERUM IGE LEVEL ESTIMATION', 'TROPONIN I', 'VITAMIN D', 'VITAMIN B12'],
+        'MICROBIOLOGY': ['URINE CULTURE', 'BLOOD CULTURE', 'STOOL PUS FOR CULTURE', 'SPUTUM CULTURE', 'WOUND SWAB', 'GRAM STAIN', 'AFB STAIN'],
         'PATHOLOGY': ['ACITIC FLUID', 'ANTI HAV IGM', 'ANTI HEP E IGM', 'ANTI HEV (IGG-IGM)', 'ANTI MITOCHONDRIAL ANTI BODY', 'ANTI PHOSPHOLIPID ANTIBODIES-IGG', 'ANTI PHOSPHOLIPID ANTIBODY IGG-IGM', 'ANTI SMOOTH MUSCLE ANTIBODY(ASMA)', 'APOLIPOPROTEIN-A1(APO-A1)', 'ASCITIC FLUID EXAMINATION', 'ASCITIC FLUID FOR CELL TYPE AND CELL COUNT', 'ASCITIC FLUID FOR CYTOLOG', 'ASCITIC FLUID FOR TC & DC', 'ASCITIC FULID FOR CELLCOUNT', 'B12', 'BICORBONATE', 'BIG BIOPSY', 'BIOPSY LARGE', 'BIOPSY(LARGE)'],
         'SEROLOGY': ['ABSOLUTE EOSINOPHIL COUNT', 'ABSOLUTE NEUTROPHIL COUNT', 'ANTI THYROID ANTIBODIES(ATG&AMA)', 'ANTI TPO', 'APOLIPOPROTEIN - B/A1 RATIO', 'BAEPS', 'BLOOD FOR ANEROBIC CULTURE', 'BLOOD GLUCOSE(F & PP)', 'BLOOD GLUCOSE(F&PP)', 'C.E.A', 'CARBAMAZEPINE/TERTERTOL', 'CEA', 'CELL COUNT', 'COLONOSCOPY', 'CT CONTRAST_1', 'DIFFERENTIAL COUNT (DC)', 'DI-HYDROTESTOSTERONE(DHT)', 'EPINEPHRINE/ADRENALINE', 'ERYTHROSITE SEDIMENTATION RATE']
     };
@@ -188,8 +207,13 @@ export class SoftLab implements OnInit {
         const path = this.route.snapshot.url[0]?.path;
         if (path === 'lab-charges') this.currentView = 'charges';
         else if (path === 'lab-registration') this.currentView = 'registration';
+        else if (path === 'lab-due-collection') this.currentView = 'due-collection';
+        else if (path === 'lab-report-status') this.currentView = 'report-status';
+        else if (path === 'lab-test-cancellation') this.currentView = 'test-cancellation';
         else if (path === 'lab-test-details') this.currentView = 'test-details';
-        // Add others as needed
+
+        // Initialize with all tests as default
+        this.currentTestList = [...this.labTestNames['BIOCHEMISTRY'], ...this.labTestNames['HEAMATOLOGY']];
     }
 
     onDepartmentChange() {

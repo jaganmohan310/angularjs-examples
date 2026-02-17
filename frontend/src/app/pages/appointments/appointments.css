@@ -445,7 +445,7 @@
 
 .s-box {
     display: flex;
-    items-center;
+    align-items: center;
     gap: 15px;
 }
 

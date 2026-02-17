@@ -70,6 +70,17 @@
 
                 <form (ngSubmit)="onLogin()" class="modern-form">
                     <div class="form-group">
+                        <label for="role">
+                            <i class="ph ph-users-three"></i>
+                            Select Role
+                        </label>
+                        <select id="role" [(ngModel)]="selectedRole" name="role" class="modern-input" required>
+                            <option value="" disabled selected>Select your role</option>
+                            <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="username">
                             <i class="ph ph-user"></i>
                             Username
